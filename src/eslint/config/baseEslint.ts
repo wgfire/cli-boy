@@ -1,5 +1,5 @@
-import { getDirPath } from "../../utils/index";
 import { ESLint } from "eslint";
+import { getDirPath } from "@/utils/index";
 
 /** 2022年/July/15日/Friday
 *@reviewType.Perf
@@ -15,7 +15,7 @@ export const baseEslint: ESLint.Options = {
       browser: true,
       es2021: true,
     },
-    extends: ["plugin:react/recommended", "plugin:vue/recommended"], //"airbnb"
+    extends: ["plugin:react/recommended", "plugin:vue/recommended"], // 基础版不引入"airbnb" 会校验各种rules
     parser: require.resolve("@typescript-eslint/parser"),
     parserOptions: {
       ecmaFeatures: {
@@ -27,7 +27,10 @@ export const baseEslint: ESLint.Options = {
     plugins: ["@typescript-eslint"],
     rules: {
       "react/display-name": 0,
+      "no-console": 0,
     },
   },
   resolvePluginsRelativeTo: getDirPath("node_modules"), // 指定 loader 加载路径
 };
+
+export default baseEslint;
